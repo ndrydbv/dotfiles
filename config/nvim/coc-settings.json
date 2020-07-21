@@ -1,0 +1,45 @@
+{ "python.jediEnabled": false,
+  "python.linting.lintOnSave": false,
+  "python.globalModuleInstallation": true,
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "•",
+  "emmet.includeLanguages": {"jinja.html": "html"},
+
+  "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                },
+                "clang": {
+                    "extraArgs": [
+                       "-isystem/usr/local/include",
+                       "-isystem/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1",
+                       "-isystem/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include",
+                       "-isystem/Library/Developer/CommandLineTools/usr/include",
+                       "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
+                       "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+                           ],
+                     "resourceDir": "/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0"
+                }
+            }
+        }
+    }
+}
