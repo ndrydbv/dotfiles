@@ -4,8 +4,8 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-if [ -f ~/dotfiles/zsh/zsh_aliases ]; then
-    . ~/dotfiles/zsh/zsh_aliases
+if [ -f ~/dotfiles/zsh_aliases ]; then
+    . ~/dotfiles/zsh_aliases
 fi
 
 setopt autocd autopushd pushdignoredups
