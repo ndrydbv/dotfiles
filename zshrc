@@ -4,9 +4,38 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-if [ -f ~/dotfiles/zsh_aliases ]; then
-    . ~/dotfiles/zsh_aliases
-fi
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -="cd -"
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias cl="clear"
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+alias df="df -h"
+alias diff="diff --color=auto"
+alias doom="emacs -nw"
+alias du="du -h -c"
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ipl="ipconfig getifaddr en0"
+alias l="exa --icons -all -l --group-directories-first"
+alias py="python3"
+alias reload="RELOAD=1 source ~/.zshrc"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias ta="tmux attach"
+alias tma="tmux attach -t"
+alias tml="tmux ls"
+alias tmn="tmux new"
+alias top="vtop --theme=wizard"
+alias tsm="transmission-remote"
+alias v="nvim"
+alias vimdiff="nvim -d"
+alias z="_z 2>&1"
 
 setopt autocd autopushd pushdignoredups
 
@@ -78,13 +107,21 @@ command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
 function take() {    mkdir -p $@ && cd ${@:$#}  }
 
 # Load zsh plugins
-source ~/dotfiles/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source ~/dotfiles/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 source "$(brew --prefix)/etc/profile.d/z.sh"
+
+# pyenv
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+fpath=($fpath "/Users/andrey/.zfunctions")
 
 SPACESHIP_EXEC_TIME_SHOW=false
 SPACESHIP_BATTERY_THRESHOLD=15
@@ -104,11 +141,5 @@ SPACESHIP_PYENV_SHOW=false
 
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
- prompt spaceship
+prompt spaceship
 
-# pyenv
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"

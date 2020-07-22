@@ -280,7 +280,6 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " ===                      CUSTOM COLORSCHEME CHANGES                      === "
 
 function! s:custom_colors()
-
 " Make background transparent for many things
 let s:base00=['#1b2b34', '235']
 let s:base05=['#c0c5ce', '251']
