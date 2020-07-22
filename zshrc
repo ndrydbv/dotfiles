@@ -37,6 +37,30 @@ alias v="nvim"
 alias vimdiff="nvim -d"
 alias z="_z 2>&1"
 
+# git aliases
+alias g='git'
+alias gs='git status'
+alias gc='git commit'
+alias ga='git add'
+alias gpl='git pull'
+alias gpom='git pull origin master'
+alias gpu='git push'
+alias gpuom='git push origin master'
+alias gd='git diff'
+alias gch='git checkout'
+alias gnb='git checkout -b'
+alias gac='git add . && git commit'
+alias grs='git restore --staged .'
+alias gre='git restore'
+alias gr='git remote'
+alias gcl='git clone'
+alias glg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold green)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold yellow)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
+alias gt='git ls-tree -r master --name-only'
+alias grm='git remote'
+alias gb='git branch'
+alias gm='git merge'
+alias gf='git fetch'
+
 setopt autocd autopushd pushdignoredups
 
 # history
@@ -107,13 +131,14 @@ command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
 function take() {    mkdir -p $@ && cd ${@:$#}  }
 
 # Load zsh plugins
+source "$(brew --prefix)/etc/profile.d/z.sh"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-source "$(brew --prefix)/etc/profile.d/z.sh"
+
 
 # pyenv
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
