@@ -1,9 +1,3 @@
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=true
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -64,9 +58,13 @@ alias gf='git fetch'
 setopt autocd autopushd pushdignoredups
 
 # history
-HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+setopt append_history           # append to histfile instead of overwriting
+setopt hist_expire_dups_first   # prune duplicate commands before unique from history
+setopt hist_ignore_space        # remove commands with starting whitespace from history
+setopt share_history            # append and import history between terminals
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -134,7 +132,7 @@ function take() {    mkdir -p $@ && cd ${@:$#}  }
 source "$(brew --prefix)/etc/profile.d/z.sh"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
