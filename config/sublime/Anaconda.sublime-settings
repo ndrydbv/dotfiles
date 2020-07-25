@@ -12,5 +12,5 @@
     "anaconda_linter_mark_style": "none",
     "display_signatures": false,
     "disable_anaconda_completion": true,
-    "python_interpreter": "/Users/andrey/.pyenv/shims/python"
+    "python_interpreter": "~/.pyenv/shims/python"
 }
