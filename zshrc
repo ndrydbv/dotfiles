@@ -79,7 +79,6 @@ source /usr/local/share/zsh-history-substring-search/zsh-history-substring-searc
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-
 # pyenv
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_ROOT="$HOME/.pyenv"
@@ -88,22 +87,22 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 
-# SPACESHIP_EXEC_TIME_SHOW=false
-# SPACESHIP_BATTERY_THRESHOLD=15
-# SPACESHIP_GIT_PREFIX=''
-# SPACESHIP_GIT_STATUS_PREFIX=' '
-# SPACESHIP_GIT_STATUS_SUFFIX=''
-# SPACESHIP_PYENV_PREFIX=''
-# SPACESHIP_PROMPT_ADD_NEWLINE=false
-# SPACESHIP_PROMPT_SEPARATE_LINE=false
-# SPACESHIP_CHAR_SUFFIX=" "
-# SPACESHIP_CHAR_SYMBOL=❯
-# SPACESHIP_VI_MODE_SHOW=false
-# SPACESHIP_CONDA_SHOW=false
-# SPACESHIP_VENV_SHOW=false
-# SPACESHIP_NODE_SHOW=false
-# SPACESHIP_PYENV_SHOW=false
+SPACESHIP_EXEC_TIME_SHOW=false
+SPACESHIP_BATTERY_THRESHOLD=15
+SPACESHIP_GIT_PREFIX=''
+SPACESHIP_GIT_STATUS_PREFIX=' '
+SPACESHIP_GIT_STATUS_SUFFIX=''
+SPACESHIP_PYENV_PREFIX=''
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_CHAR_SYMBOL=❯
+SPACESHIP_VI_MODE_SHOW=false
+SPACESHIP_CONDA_SHOW=false
+SPACESHIP_VENV_SHOW=false
+SPACESHIP_NODE_SHOW=false
+SPACESHIP_PYENV_SHOW=false
 
-# # Set Spaceship ZSH as a prompt
-# autoload -U promptinit; promptinit
-# prompt spaceship
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship
