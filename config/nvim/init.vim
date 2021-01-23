@@ -5,7 +5,6 @@ Plug 'mhartington/oceanic-next'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-Plug 'joshdick/onedark.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-commentary'
 Plug 'jeetsukumaran/vim-pythonsense'
@@ -32,7 +31,6 @@ Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'stephenway/postcss.vim', { 'for': 'css' }
 Plug 'ap/vim-css-color'
-Plug 'ekalinin/Dockerfile.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'chiel92/vim-autoformat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -44,7 +42,6 @@ call plug#end()
 
 " ===                               SETTINGS                               === "
 let g:python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python' "special venv for neovim
-
 let g:mapleader=','
 map <leader>, :w<cr>
 nmap <leader>q :q<cr>
@@ -98,15 +95,17 @@ function! WinMove(key)
   endif
 endfunction
 
+set gcr+=n:ver1-iCur
+set gcr+=v:ver1-iCur
+set mouse=a
 set noshowcmd
 set hidden
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set autoindent
 set smarttab
 set nowrap
-set colorcolumn=80
 set nocursorline
 set noruler
 set shortmess+=I
@@ -116,7 +115,6 @@ set splitright
 set noshowmode
 set winbl=10
 set mouse=n
-let g:tmux_navigator_save_on_switch = 2
 set clipboard+=unnamedplus
 set ignorecase
 set smartcase
@@ -153,16 +151,25 @@ autocmd FileType htmldjango inoremap {% {%  %}<left><left><left>
 autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
+"Script Templates
+iab pyhead <ESC>:-1read $HOME/.config/nvim/skeleton/python/head.py<CR>
+iab byid document.getElementById(" ");<ESC>F c
+
 " ===                           PLUGIN SETUP                               === "
 " === goyo
 let g:goyo_height = 100
 let g:goyo_linenr = 1
 
-" === Vim airline ==== "
+" vim-tmux-navigator
+let g:tmux_navigator_save_on_switch = 2
+
+" " === vim airline ==== "
 let g:airline_extensions = ['branch', 'coc']
 let g:airline_theme='space'
 let g:airline_section_z = "%p%% %l/%L %c"
 let g:airline_skip_empty_sections = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
 let g:airline_powerline_fonts = 1
@@ -172,10 +179,11 @@ if !exists('g:airline_symbols')
 endif
 
 " === autopair
-let g:AutoPairsFlyMode = 1
+let g:autopairsflymode = 1
+" for fstrings in py
+au FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'"})
 
 " ------COC SETTINGS------
-
 let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-pairs',
@@ -191,7 +199,7 @@ let g:coc_global_extensions = [
   \ 'coc-phpls',
   \ 'coc-vimtex',
   \ 'coc-emmet',
-  \ ]
+  \]
 
 " From Coc Readme
 set updatetime=300
@@ -221,6 +229,19 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" Navigate snippet placeholders using tab
+let g:coc_snippet_next = '<Tab>'
+let g:coc_snippet_prev = '<S-Tab>'
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -243,7 +264,34 @@ function! s:show_documentation()
 endfunction
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nmap <rn> <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>af  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -257,26 +305,6 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-highlight link CocErrorSign GruvboxRed
-
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
-
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-
 " ===                      CUSTOM COLORSCHEME CHANGES                      === "
 
 function! s:custom_colors()
@@ -287,12 +315,12 @@ let s:base100=['#16242c', '255']
   hi Normal ctermbg=NONE guibg=NONE
   hi NonText ctermbg=NONE guifg=#16242c guibg=base00
   hi LineNr ctermfg=NONE guibg=NONE
+  hi CursorLineNr guibg=NONE guifg=#c0c5ce
   hi SignColumn ctermfg=NONE guibg=NONE
-  "hi StatusLine guifg=#16252b guibg=#6699CC
-  "hi StatusLineNC guifg=#16252b guibg=#16252b
-  " Try to hide vertical spit and end of buffer symbol
+  hi StatusLine guifg=NONE guibg=NONE
+  " Try to hide vertical split and end of buffer symbol
   hi VertSplit gui=NONE guifg=NONE guibg=NONE
-  hi EndOfBuffer guifg=gray
+  hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=NONE guifg=#1b2b34
 
   " Make background color transparent for git changes
   hi SignifySignAdd guibg=NONE
@@ -307,23 +335,10 @@ endfunction
 
 autocmd! ColorScheme OceanicNext call s:custom_colors()
 
-" Call method on window enter
-augroup WindowManagement
-  autocmd!
-  autocmd WinEnter * call Handle_Win_Enter()
-augroup END
-
-" Change highlight group of preview window when open
-function! Handle_Win_Enter()
-  if &previewwindow
-    setlocal winhighlight=Normal:MarkdownError
-  endif
-endfunction
-
 " Editor theme
-set background=dark
 try
   colorscheme OceanicNext
 catch
   colorscheme slate
 endtry
+

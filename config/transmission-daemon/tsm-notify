@@ -1,3 +1,3 @@
 #!/bin/sh
 
-osascript -e 'display notification "Torrent has completely downloaded!" with title "transmission-daemon"'
+osascript -e 'display notification "File has been downloaded" with title "transmission-daemon"'
