@@ -97,6 +97,7 @@ endfunction
 
 set gcr+=n:ver1-iCur
 set gcr+=v:ver1-iCur
+set gcr+=c:ver1-iCur
 set mouse=a
 set noshowcmd
 set hidden
@@ -152,8 +153,7 @@ autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 "Script Templates
-iab pyhead <ESC>:-1read $HOME/.config/nvim/skeleton/python/head.py<CR>
-iab byid document.getElementById(" ");<ESC>F c
+iab pyhead <ESC>:-1read $HOME/.config/nvim/skeleton/python/head.py<ESC>
 
 " ===                           PLUGIN SETUP                               === "
 " === goyo
