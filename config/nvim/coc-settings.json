@@ -1,4 +1,5 @@
-{ "python.jediEnabled": false,
+{ "marketplace.npmsio": true,
+  "python.jediEnabled": false,
   "python.linting.lintOnSave": false,
   "python.globalModuleInstallation": true,
   "suggest.echodocSupport": true,

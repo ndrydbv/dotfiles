@@ -1,6 +1,5 @@
 setopt autocd autopushd pushdignoredups
 autoload -U colors && colors
-# PS1="%{$fg[blue]%}%~ %{$reset_color%}$%b "
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 HISTFILE=~/.zsh_history
@@ -10,6 +9,17 @@ setopt append_history           # append to histfile instead of overwriting
 setopt hist_expire_dups_first   # prune duplicate commands before unique from history
 setopt hist_ignore_space        # remove commands with starting whitespace from history
 setopt share_history            # append and import history between terminals
+
+#colored man pages
+man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
 
 # Basic auto/tab complete:
 autoload -U compinit
