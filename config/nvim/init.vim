@@ -65,6 +65,7 @@ nmap  <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<C
 nmap <silent> <leader>/ :nohlsearch<CR>
 nmap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 nnoremap <leader>. :close<cr>
+nmap <Space> :CocCommand explorer<cr>
 nnoremap <silent> <leader>v :call WinMove('h')<cr>
 nnoremap <silent> <leader>s :call WinMove('j')<cr>
 nnoremap <silent> <leader>s :call WinMove('k')<cr>
@@ -163,7 +164,7 @@ let g:goyo_linenr = 1
 " vim-tmux-navigator
 let g:tmux_navigator_save_on_switch = 2
 
-" " === vim airline ==== "
+" === vim airline ==== "
 let g:airline_extensions = ['branch', 'coc']
 let g:airline_theme='space'
 let g:airline_section_z = "%p%% %l/%L %c"
@@ -309,9 +310,9 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 function! s:custom_colors()
 " Make background transparent for many things
-let s:base00=['#1b2b34', '235']
-let s:base05=['#c0c5ce', '251']
-let s:base100=['#16242c', '255']
+" let s:base00=['#1b2b34', '235']
+" let s:base05=['#c0c5ce', '251']
+" let s:base100=['#16242c', '255']
   hi Normal ctermbg=NONE guibg=NONE
   hi NonText ctermbg=NONE guifg=#16242c guibg=base00
   hi LineNr ctermfg=NONE guibg=NONE
