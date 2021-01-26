@@ -30,6 +30,10 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
+bindkey '^n' expand-or-complete
+bindkey '^p' reverse-menu-complete
+bindkey '^k' up-history
+bindkey '^j' down-history
 
 # shortcut for mkdirr && cd
 function take() {    mkdir -p $@ && cd ${@:$#}  }
@@ -68,8 +72,8 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey '^k' history-substring-search-up
+bindkey '^j' history-substring-search-down
 
 SPACESHIP_EXEC_TIME_SHOW=false
 SPACESHIP_BATTERY_THRESHOLD=15
