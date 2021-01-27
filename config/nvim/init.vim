@@ -163,9 +163,9 @@ let g:goyo_linenr = 1
 
 "fzf
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:50%' --preview 'bat --color=always'"
+let $FZF_DEFAULT_OPTS="--preview-window 'right:50%' --preview 'bat --color=always'"
 
-" vim-tmux-navigator
+"vim-tmux-navigator
 let g:tmux_navigator_save_on_switch = 2
 
 " === vim airline ==== "
@@ -316,9 +316,6 @@ set winbl=0
 
 function! s:custom_colors()
 " Make background transparent for many things
-" let s:base00=['#1b2b34', '235']
-" let s:base05=['#c0c5ce', '251']
-" let s:base100=['#16242c', '255']
   hi Normal ctermbg=NONE guibg=NONE
   hi NonText ctermbg=NONE guifg=#16242c guibg=base00
   hi LineNr ctermfg=NONE guibg=NONE
