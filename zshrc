@@ -3,6 +3,7 @@ autoload -U colors && colors
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export EDITOR='nvim'
+export BAT_THEME="zenburn"
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000

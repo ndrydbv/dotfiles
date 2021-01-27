@@ -161,6 +161,10 @@ iab pyhead <ESC>:-1read $HOME/.config/nvim/skeleton/python/head.py<ESC>
 let g:goyo_height = 100
 let g:goyo_linenr = 1
 
+"fzf
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:50%' --preview 'bat --color=always'"
+
 " vim-tmux-navigator
 let g:tmux_navigator_save_on_switch = 2
 
@@ -344,4 +348,3 @@ try
 catch
   colorscheme slate
 endtry
-
