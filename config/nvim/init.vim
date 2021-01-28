@@ -162,8 +162,7 @@ let g:goyo_height = 100
 let g:goyo_linenr = 1
 
 "fzf
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-let $FZF_DEFAULT_OPTS="--preview-window 'right:50%' --preview 'bat --color=always'"
+let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 0.9 } }
 
 "vim-tmux-navigator
 let g:tmux_navigator_save_on_switch = 2

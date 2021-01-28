@@ -3,7 +3,20 @@ autoload -U colors && colors
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export EDITOR='nvim'
-export BAT_THEME="base16"
+export BAT_THEME="zenburn"
+export FZF_DEFAULT_OPTS="
+--info=inline
+--height=90%
+--multi
+--preview-window=:hidden
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+--pointer='▶' --marker='✓'
+--bind 'ctrl-/:toggle-preview'
+--bind 'ctrl-a:select-all'
+--bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
+--bind 'ctrl-e:execute(echo {+} | xargs -o nvim)'
+--bind 'ctrl-v:execute(code {+})'
+"
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -96,8 +109,8 @@ autoload -U promptinit; promptinit
 prompt spaceship
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# if command -v pyenv 1>/dev/null 2>&1; then
+#     eval "$(pyenv init -)"
+# fi
