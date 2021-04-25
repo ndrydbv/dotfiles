@@ -1,5 +1,5 @@
 {
-  "python.jediEnabled": false,
+  "python.jediEnabled": true,
   "python.linting.lintOnSave": false,
   "python.globalModuleInstallation": true,
   "suggest.echodocSupport": true,

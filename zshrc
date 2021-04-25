@@ -52,8 +52,6 @@ bindkey '^j' down-history
 # shortcut for mkdirr && cd
 function take() {    mkdir -p $@ && cd ${@:$#}  }
 
-for f in ~/dotfiles/config/shellconfig/*; do source $f; done
-
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -81,13 +79,14 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 
 # Load zsh plugins
+for f in ~/dotfiles/config/shellconfig/*; do source $f; done
 source "$(brew --prefix)/etc/profile.d/z.sh"
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey '^k' history-substring-search-up
+bindkey '^j' history-substring-search-down
 
 SPACESHIP_EXEC_TIME_SHOW=false
 SPACESHIP_BATTERY_THRESHOLD=15
@@ -109,8 +108,8 @@ autoload -U promptinit; promptinit
 prompt spaceship
 
 # pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# if command -v pyenv 1>/dev/null 2>&1; then
-#     eval "$(pyenv init -)"
-# fi
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi

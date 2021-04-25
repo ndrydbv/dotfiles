@@ -1,6 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'junegunn/goyo.vim'
 Plug 'mhartington/oceanic-next'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -34,6 +33,7 @@ Plug 'ap/vim-css-color'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'chiel92/vim-autoformat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'tpope/vim-dadbod'
@@ -41,7 +41,7 @@ Plug 'tpope/vim-dadbod'
 call plug#end()
 
 " ===                               SETTINGS                               === "
-let g:python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python' "special venv for neovim
+let g:python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python'
 let g:mapleader=','
 map <leader>, :w<cr>
 nmap <leader>q :q<cr>
@@ -157,9 +157,6 @@ autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 iab pyhead <ESC>:-1read $HOME/.config/nvim/skeleton/python/head.py<ESC>
 
 " ===                           PLUGIN SETUP                               === "
-" === goyo
-let g:goyo_height = 100
-let g:goyo_linenr = 1
 
 "fzf
 let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 0.9 } }
@@ -169,7 +166,7 @@ let g:tmux_navigator_save_on_switch = 2
 
 " === vim airline ==== "
 let g:airline_extensions = ['branch', 'coc']
-let g:airline_theme='space'
+let g:airline_theme='monochrome'
 let g:airline_section_z = "%p%% %l/%L %c"
 let g:airline_skip_empty_sections = 1
 let g:airline_left_sep=''
