@@ -25,6 +25,10 @@ setopt hist_expire_dups_first   # prune duplicate commands before unique from hi
 setopt hist_ignore_space        # remove commands with starting whitespace from history
 setopt share_history            # append and import history between terminals
 
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
 #colored man pages
 man() {
     LESS_TERMCAP_md=$'\e[01;31m' \
@@ -38,44 +42,21 @@ man() {
 
 # Basic auto/tab complete:
 autoload -U compinit
+compinit
 zstyle ':completion:*' menu select
 # Auto complete with case insenstivity
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zmodload zsh/complist
-compinit
 _comp_options+=(globdots)		# Include hidden files.
 bindkey '^n' expand-or-complete
 bindkey '^p' reverse-menu-complete
 bindkey '^k' up-history
 bindkey '^j' down-history
+bindkey '^k' history-substring-search-up
+bindkey '^j' history-substring-search-down
 
 # shortcut for mkdirr && cd
 function take() {    mkdir -p $@ && cd ${@:$#}  }
-
-# vi mode
-bindkey -v
-export KEYTIMEOUT=1
-
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[5 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 
 # Load zsh plugins
@@ -84,9 +65,8 @@ source "$(brew --prefix)/etc/profile.d/z.sh"
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-you-should-use/you-should-use.plugin.zsh
 
-bindkey '^k' history-substring-search-up
-bindkey '^j' history-substring-search-down
 
 SPACESHIP_EXEC_TIME_SHOW=false
 SPACESHIP_BATTERY_THRESHOLD=15

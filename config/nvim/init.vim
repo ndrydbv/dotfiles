@@ -77,7 +77,7 @@ nnoremap <A-d> :!mkdir<Space>
 nnoremap <A-c> :!cd<Space>
 nnoremap <A-m> :!mv<Space>
 nnoremap <A-w> :!pwd<cr>
-nnoremap <A-l> :!exa --icons -all -l --group-directories-first<cr>
+nnoremap <A-e> :!exa --icons -all -l --group-directories-first<cr>
 
 " Fix indenting visual block
 vmap < <gv
@@ -96,9 +96,8 @@ function! WinMove(key)
   endif
 endfunction
 
-set gcr+=n:ver1-iCur
-set gcr+=v:ver1-iCur
-set gcr+=c:ver1-iCur
+set guicursor=
+autocmd OptionSet guicursor noautocmd set guicursor=
 set mouse=a
 set noshowcmd
 set hidden
@@ -166,7 +165,6 @@ let g:tmux_navigator_save_on_switch = 2
 
 " === vim airline ==== "
 let g:airline_extensions = ['branch', 'coc']
-let g:airline_theme='monochrome'
 let g:airline_section_z = "%p%% %l/%L %c"
 let g:airline_skip_empty_sections = 1
 let g:airline_left_sep=''
