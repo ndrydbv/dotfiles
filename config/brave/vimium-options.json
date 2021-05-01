@@ -1,0 +1,26 @@
+{
+  "settingsVersion": "1.66",
+  "exclusionRules": [
+    {
+      "pattern": "https://www.youtube.com/*",
+      "passKeys": "<>nNP"
+    }
+  ],
+  "filterLinkHints": false,
+  "waitForEnterForFilteredHints": true,
+  "hideHud": false,
+  "keyMappings": "unmap v\nmap ' toggleMuteTab all\nmap \" toggleMuteTab other\nmap yt createTab https://www.youtube.com\nmap vk createTab https://www.vk.com\nmap 1 createTab https://e.mail.ru/inbox/\nmap 2 createTab https://www.vocabulary.com/play/",
+  "linkHintCharacters": "sadfjklewcmpgh",
+  "linkHintNumbers": "0123456789",
+  "newTabUrl": "about:newtab",
+  "nextPatterns": "next,more,newer,>,›,→,»,≫,>>",
+  "previousPatterns": "prev,previous,back,older,<,‹,←,«,≪,<<",
+  "regexFindMode": false,
+  "ignoreKeyboardLayout": true,
+  "scrollStepSize": 60,
+  "smoothScroll": true,
+  "grabBackFocus": true,
+  "searchEngines": "d: https://duckduckgo.com/?q=%s DuckDuckGo\ng: https://www.google.com/search?q=%s Google\ngi: https://www.google.com/search?tbm=isch&q=%s Google Images\ngm: https://www.google.com/maps?q=%s Google Maps\ngd: https://www.google.com/search?q=define+%s\nrecent: https://www.google.com/search?hl=en&tbo=1&tbs=qdr:y&q=%s Google (last year only)\ngt: https://translate.google.com/?source=osdd#auto|auto|%s Google Translator\nya: https://yandex.ru/search/?text=%s Yandex\ndi: http://dictionary.com/browse/%s\nth: http://thesaurus.com/browse/%s\ndg: http://www.discogs.com/search?q=%s&type=all\nwe: https://en.wikipedia.org/wiki/Special:Search?search=%s Wikipedia (en)\nwr: https://ru.wikipedia.org/wiki/Special:Search?search=%s Wikipedia (ru)\nwk: https://en.wiktionary.org/wiki/Special:Search?search=%s&go=Go\ngit: https://github.com/search?q=%s GitHub\nhn: https://www.hnsearch.com/search#request/submissions&q=%s&start=0 HackerNews\nso: https://stackoverflow.com/search?q=%s StackOverflow\nsu: https://superuser.com/search?q=%s SuperUser\nud: https://www.urbandictionary.com/define.php?term=%s UrbanDictionary\nyt: https://www.youtube.com/results?search_query=%s YouTube\nimdb: https://www.imdb.com/find?s=all&q=%s IMDB\ntw: https://twitter.com/search?q=%s&vertical=default&f=tweets\nrd: https://www.reddit.com/search?q=%s\nrt: https://rutracker.org/forum/tracker.php?nm=%s rutracker\npb: https://www.pirate-bay.net/search?q=%s piratebay\nfl: https://flibusta.is/booksearch?ask=%s flibusta\ngl: http://gen.lib.rus.ec/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def genlibrusec genlibrusec\nfv: https://forvo.com/word/%s/#en forvo\n\n# Use google to search the current site you're on\nsite: javascript:location='https://www.google.com/search?num=100&q=site:'+escape(location.hostname)+'+%s'",
+  "searchUrl": "https://duckduckgo.com/?q=%s",
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n  /* linkhint boxes */\n  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),\n  color-stop(100%,#FFC542));\n  border: 1px solid #E3BE23;\n}\n\ndiv > .vimiumHintMarker span {\n  /* linkhint text */\n  color: black;\n  font-weight: bold;\n  font-size: 12px;\n}\n\ninput#vomnibarInput.vimiumReset {\n\tcolor: #FFF !important;\n  background-color: #222 !important;\n}\n\n#vomnibar {\n   border-color: #222;\n   background-color: #222;\n}\n\n#vomnibar .vomnibarSearchArea {\n   background-color: #222;\n   border-bottom: #222;\n}\n\n#vomnibar input {\n   color: #ccc;\n   border-color: #222;\n   background-color: #222;\n}\n\n#vomnibar ul {\n    background-color: #222;\n}\n\n#vomnibar li {\n   border-bottom: #3f3f3f;\n}\n\n#vomnibar li .vomnibarUrl {\n   color: #5287e3;\n}\n\n#vomnibar li .vomnibarMatch {\n   color: white;\n}\n\n#vomnibar li.vomnibarSelected {\n    background-color: #555555;\n}\n\n#vomnibar li em .vomnibarMatch, #vomnibar li .vomnibarTitle .vomnibarMatch {\n   color: white;\n}\n\n#vomnibar li em, #vomnibar li .vomnibarTitle {\n   color: #ddd;\n}"
+}

@@ -36,6 +36,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'tpope/vim-dadbod'
 
 call plug#end()
@@ -156,6 +157,13 @@ autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 iab pyhead <ESC>:-1read $HOME/.config/nvim/skeleton/python/head.py<ESC>
 
 " ===                           PLUGIN SETUP                               === "
+
+let g:svelte_preprocessors = ['typescript']
+let g:svelte_preprocessor_tags = [
+  \ { 'name': 'postcss', 'tag': 'style', 'as': 'scss' }
+  \ ]
+" You still need to enable these preprocessors as well.
+let g:svelte_preprocessors = ['postcss']
 
 "fzf
 let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 0.9 } }

@@ -1,4 +1,18 @@
-{
+{ "eslint.probe": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"html",
+		"vue",
+		"markdown",
+		"svelte"
+	],
+	"eslint.options": {
+		"ignorePath": ".gitignore"
+	},
+	"eslint.lintTask.options": ["--ignore-path", ".gitignore", "."],
+	"eslint.validate": ["svelte"],
   "python.jediEnabled": true,
   "python.linting.lintOnSave": false,
   "python.globalModuleInstallation": true,

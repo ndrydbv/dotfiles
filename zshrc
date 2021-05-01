@@ -54,6 +54,7 @@ bindkey '^k' up-history
 bindkey '^j' down-history
 bindkey '^k' history-substring-search-up
 bindkey '^j' history-substring-search-down
+bindkey '^R' history-incremental-pattern-search-backward
 
 # shortcut for mkdirr && cd
 function take() {    mkdir -p $@ && cd ${@:$#}  }
@@ -67,22 +68,40 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-you-should-use/you-should-use.plugin.zsh
 
-
 SPACESHIP_EXEC_TIME_SHOW=false
 SPACESHIP_BATTERY_THRESHOLD=15
 SPACESHIP_GIT_PREFIX=''
 SPACESHIP_GIT_STATUS_PREFIX=' '
 SPACESHIP_GIT_STATUS_SUFFIX=''
-SPACESHIP_PYENV_PREFIX=''
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
-SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_CHAR_SYMBOL=❯
-SPACESHIP_VI_MODE_SHOW=false
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_HG_SHOW=false
+SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_NODE_SHOW=false
+SPACESHIP_RUBY_SHOW=false
+SPACESHIP_ELM_SHOW=false
+SPACESHIP_ELIXIR_SHOW=false
+SPACESHIP_XCODE_SHOW_LOCAL=false
+SPACESHIP_SWIFT_SHOW_LOCAL=false
+SPACESHIP_GOLANG_SHOW=false
+SPACESHIP_PHP_SHOW=false
+SPACESHIP_RUST_SHOW=false
+SPACESHIP_JULIA_SHOW=false
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_DOCKER_CONTEXT_SHOW=false
+SPACESHIP_AWS_SHOW=false
 SPACESHIP_CONDA_SHOW=false
 SPACESHIP_VENV_SHOW=false
-SPACESHIP_NODE_SHOW=false
 SPACESHIP_PYENV_SHOW=false
+SPACESHIP_DOTNET_SHOW=false
+SPACESHIP_EMBER_SHOW=false
+SPACESHIP_KUBECONTEXT_SHOW=false
+SPACESHIP_TERRAFORM_SHOW=false
+SPACESHIP_TERRAFORM_SHOW=false
+SPACESHIP_VI_MODE_SHOW=false
+SPACESHIP_JOBS_SHOW=false
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
 prompt spaceship
