@@ -3,6 +3,7 @@ autoload -U colors && colors
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export EDITOR='nvim'
+export BROWSER='/usr/local/Caskroom/brave-browser/90.1.23.71,123.71/Brave\ Browser.app/Contents/MacOS/Brave\ Browser' #full path for newboat
 export BAT_THEME="zenburn"
 export FZF_DEFAULT_OPTS="
 --info=inline
@@ -56,6 +57,10 @@ bindkey '^k' history-substring-search-up
 bindkey '^j' history-substring-search-down
 bindkey '^R' history-incremental-pattern-search-backward
 
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 # shortcut for mkdirr && cd
 function take() {    mkdir -p $@ && cd ${@:$#}  }
 
@@ -66,10 +71,11 @@ source "$(brew --prefix)/etc/profile.d/z.sh"
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-you-should-use/you-should-use.plugin.zsh
 
 SPACESHIP_EXEC_TIME_SHOW=false
 SPACESHIP_BATTERY_THRESHOLD=15
+SPACESHIP_GIT_BRANCH_SHOW=false
+SPACESHIP_GIT_STATUS_SHOW=true
 SPACESHIP_GIT_PREFIX=''
 SPACESHIP_GIT_STATUS_PREFIX=' '
 SPACESHIP_GIT_STATUS_SUFFIX=''

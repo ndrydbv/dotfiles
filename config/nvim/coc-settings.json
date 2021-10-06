@@ -1,141 +1,62 @@
-{ "eslint.probe": [
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact",
-		"html",
-		"vue",
-		"markdown",
-		"svelte"
-	],
-	"eslint.options": {
-		"ignorePath": ".gitignore"
-	},
-	"eslint.lintTask.options": ["--ignore-path", ".gitignore", "."],
-	"eslint.validate": ["svelte"],
+{
+  "prettier.formatterPriority": 1,
+  "coc.preferences.formatOnSaveFiletypes": ["*"],
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown"
+  ],
+  "eslint.options": {
+    "ignorePath": ".gitignore"
+  },
+  "eslint.lintTask.options": ["--ignore-path", ".gitignore", "."],
+  "eslint.validate": ["svelte"],
+  "snippets.extends": {
+    "svelte": ["javascript", "typescript"]
+  },
   "python.jediEnabled": true,
-  "python.linting.lintOnSave": false,
   "python.globalModuleInstallation": true,
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "•",
-  "emmet.includeLanguages": {"jinja.html": "html"},
+  "emmet.includeLanguages": { "jinja.html": "html" },
   "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                },
-                "clang": {
-                    "extraArgs": [
-                       "-isystem/usr/local/include",
-                       "-isystem/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1",
-                       "-isystem/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include",
-                       "-isystem/Library/Developer/CommandLineTools/usr/include",
-                       "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
-                       "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
-                           ],
-                     "resourceDir": "/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0"
-                }
-            }
-        }
-    },
-    "explorer.icon.enableNerdfont": true,
-    "explorer.file.showHiddenFiles": true,
-    "explorer.keyMappings.global": {
-      "i": false, // cancel default mapkey
-
-      "*": "toggleSelection",
-      "<tab>": "actionMenu",
-
-      "gk": ["wait", "expandablePrev"],
-      "gj": ["wait", "expandableNext"],
-      "h": ["wait", "collapse"],
-      "l": ["wait", "expandable?", "expand", "open"],
-      "J": ["wait", "toggleSelection", "normal:j"],
-      "K": ["wait", "toggleSelection", "normal:k"],
-      "gl": ["wait", "expand:recursive"],
-      "gh": ["wait", "collapse:recursive"],
-      "<2-LeftMouse>": [
-        "expandable?",
-        ["expanded?", "collapse", "expand"],
-        "open"
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
       ],
-      "o": ["wait", "expanded?", "collapse", "expand"],
-      "<cr>": ["wait", "expandable?", "cd", "open"],
-      "e": "open",
-      "s": "open:split",
-      "E": "open:vsplit",
-      "t": "open:tab",
-      "<bs>": ["wait", "gotoParent"],
-      "gs": ["wait", "reveal:select"],
-      "il": "preview:labeling",
-      "ic": "preview:content",
-      "Il": "previewOnHover:toggle:labeling",
-      "Ic": "previewOnHover:toggle:content",
-      "II": "previewOnHover:disable",
-
-      "yp": "copyFilepath",
-      "yn": "copyFilename",
-      "yy": "copyFile",
-      "dd": "cutFile",
-      "p": "pasteFile",
-      "df": "delete",
-      "dF": "deleteForever",
-
-      "a": "addFile",
-      "A": "addDirectory",
-      "r": "rename",
-
-      "zh": "toggleHidden",
-      "g<dot>": "toggleHidden",
-      "R": "refresh",
-
-      "?": "help",
-      "q": "quit",
-      "<esc>": "esc",
-      "X": "systemExecute",
-      "gd": "listDrive",
-
-      "f": "search",
-      "F": "searchRecursive",
-
-      "gf": "gotoSource:file",
-      "gb": "gotoSource:buffer",
-
-      "[[": ["wait", "sourcePrev"],
-      "]]": ["wait", "sourceNext"],
-
-      "[i": ["wait", "indentPrev"],
-      "]i": ["wait", "indentNext"],
-
-      "[m": ["wait", "markPrev:modified"],
-      "]m": ["wait", "markNext:modified"],
-
-      "[d": ["wait", "markPrev:diagnosticError:diagnosticWarning"],
-      "]d": ["wait", "markNext:diagnosticError:diagnosticWarning"],
-      "[D": ["wait", "markPrev:diagnosticError"],
-      "]D": ["wait", "markNext:diagnosticError"],
-
-      "[c": ["wait", "markPrev:git"],
-      "]c": ["wait", "markNext:git"],
-      "<<": "gitStage",
-      ">>": "gitUnstage"
-  }
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        },
+        "clang": {
+          "extraArgs": [
+            "-isystem/usr/local/include",
+            "-isystem/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1",
+            "-isystem/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include",
+            "-isystem/Library/Developer/CommandLineTools/usr/include",
+            "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
+            "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+          ],
+          "resourceDir": "/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0"
+        }
+      }
+    }
+  },
+  "explorer.file.showHiddenFiles": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.git.enable": true,
+  "suggest.floatEnable": false
 }

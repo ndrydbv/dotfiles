@@ -1,10 +1,11 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'mhartington/oceanic-next'
+Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-commentary'
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jiangmiao/auto-pairs'
@@ -29,7 +30,6 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'stephenway/postcss.vim', { 'for': 'css' }
-Plug 'ap/vim-css-color'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'chiel92/vim-autoformat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -42,6 +42,11 @@ Plug 'tpope/vim-dadbod'
 call plug#end()
 
 " ===                               SETTINGS                               === "
+set synmaxcol=200
+set foldmethod=indent
+set nofoldenable
+:au FocusLost * :wa
+
 let g:python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python'
 let g:mapleader=','
 map <leader>, :w<cr>
@@ -79,7 +84,13 @@ nnoremap <A-c> :!cd<Space>
 nnoremap <A-m> :!mv<Space>
 nnoremap <A-w> :!pwd<cr>
 nnoremap <A-e> :!exa --icons -all -l --group-directories-first<cr>
+"copy the file name (path) to the unnamed register
+nnoremap <silent> <A-f> :let @+=expand("%:p")<CR>
 
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 " Fix indenting visual block
 vmap < <gv
 vmap > >gv
@@ -98,7 +109,6 @@ function! WinMove(key)
 endfunction
 
 set guicursor=
-autocmd OptionSet guicursor noautocmd set guicursor=
 set mouse=a
 set noshowcmd
 set hidden
@@ -107,7 +117,6 @@ set softtabstop=2
 set expandtab
 set autoindent
 set smarttab
-set nowrap
 set nocursorline
 set noruler
 set shortmess+=I
@@ -116,7 +125,6 @@ set splitbelow
 set splitright
 set noshowmode
 set winbl=10
-set mouse=n
 set clipboard+=unnamedplus
 set ignorecase
 set smartcase
@@ -144,9 +152,6 @@ set noswapfile
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango inoremap {{ {{  }}<left><left><left>
 autocmd FileType htmldjango inoremap {% {%  %}<left><left><left>
@@ -158,13 +163,6 @@ iab pyhead <ESC>:-1read $HOME/.config/nvim/skeleton/python/head.py<ESC>
 
 " ===                           PLUGIN SETUP                               === "
 
-let g:svelte_preprocessors = ['typescript']
-let g:svelte_preprocessor_tags = [
-  \ { 'name': 'postcss', 'tag': 'style', 'as': 'scss' }
-  \ ]
-" You still need to enable these preprocessors as well.
-let g:svelte_preprocessors = ['postcss']
-
 "fzf
 let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 0.9 } }
 
@@ -172,6 +170,7 @@ let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 0.9 } }
 let g:tmux_navigator_save_on_switch = 2
 
 " === vim airline ==== "
+
 let g:airline_extensions = ['branch', 'coc']
 let g:airline_section_z = "%p%% %l/%L %c"
 let g:airline_skip_empty_sections = 1
@@ -184,7 +183,7 @@ let g:airline_highlighting_cache = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-
+let g:airline_theme='oceanicnextminimal'
 " === autopair
 let g:autopairsflymode = 1
 " for fstrings in py
@@ -206,6 +205,7 @@ let g:coc_global_extensions = [
   \ 'coc-phpls',
   \ 'coc-vimtex',
   \ 'coc-emmet',
+  \ 'coc-ccls'
   \]
 
 " From Coc Readme
@@ -256,7 +256,6 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use D to show documentation in preview window
@@ -271,7 +270,7 @@ function! s:show_documentation()
 endfunction
 
 " Remap for rename current word
-nmap <rn> <Plug>(coc-rename)
+nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -312,6 +311,12 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+" coc-explorer
+autocmd ColorScheme *
+  \ hi CocExplorerNormalFloatBorder guifg=#414347 "guibg=#272B34
+  \ | hi CocExplorerNormalFloat guibg=#272B34
+  \ | hi CocExplorerSelectUI guibg=blue
+
 " Set floating window to be transparent
 set winbl=0
 " ===                      CUSTOM COLORSCHEME CHANGES                      === "
@@ -347,3 +352,4 @@ try
 catch
   colorscheme slate
 endtry
+
