@@ -1,12 +1,19 @@
 feedlist-format     "%n %11u %t"
 articlelist-format  "%f %D   %?T?|%-17T|  ?%t"
+articlelist-title-format "%T (%u unread, %t total)%?F? matching filter '%F'&? - %U"
+feedlist-title-format "%?F?Feeds&Your feeds? (%u unread, %t total)%?F? matching filter '%F'&?%?T? - %T&?"
+itemview-title-format "%T (%u/%t)"
 notify-format       "%d new articles (%n unread articles, %f unread feeds)"
 podlist-format      "%4i [%-5p %%] %-12S %F"
 prepopulate-query-feeds yes
 refresh-on-startup yes
+suppress-first-reload yes
+scrolloff 10
 auto-reload yes
+max-items 1000
+text-width 80
 
-bind-key ; macro-prefix
+bind-key , macro-prefix
 bind-key h quit
 bind-key G end
 bind-key g home
@@ -41,6 +48,8 @@ bind-key Г show-urls
 bind-key е set-tag
 bind-key Е clear-tag
 bind-key Й hard-quit
+bind-key RIGHT next-unread
+bind-key LEFT quit
 
 color background default default
 color listnormal default default
@@ -50,9 +59,8 @@ color listfocus_unread color16 blue
 color info cyan default bold
 color article default default
 
-highlight article "(^Feed:.*|^Date:.*|^Author:.*)" cyan default bold
-highlight article "(^Link:.*|^Title:.*)" default default
-highlight article "https?://[^ ]+" green default
+highlight article "(^Feed:.*|^Date:.*|^Author:.*|^Title:.*)" cyan default bold
+highlight article "^Link:.*" green default
 
 highlight article "\\[[0-9][0-9]*\\]" magenta default bold
 highlight article "\\[image\\ [0-9]+\\]" green default bold
@@ -60,3 +68,5 @@ highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
 highlight article ":.*\\(link\\)$" green default
 highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
+
+macro r set browser "rtv -l %u"; open-in-browser
