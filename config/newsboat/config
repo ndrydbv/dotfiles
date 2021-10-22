@@ -11,7 +11,9 @@ suppress-first-reload yes
 scrolloff 10
 auto-reload yes
 max-items 1000
+reload-threads 100
 text-width 80
+browser "/usr/local/Caskroom/brave-browser/90.1.23.71,123.71/Brave\\ Browser.app/Contents/MacOS/Brave\\ Browser"
 
 bind-key , macro-prefix
 bind-key h quit
@@ -69,4 +71,4 @@ highlight article ":.*\\(link\\)$" green default
 highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
 
-macro r set browser "rtv -l %u"; open-in-browser
+macro , set browser "rtv -l %u"; open-in-browser; set browser "/usr/local/Caskroom/brave-browser/90.1.23.71,123.71/Brave\\ Browser.app/Contents/MacOS/Brave\\ Browser"
