@@ -3,7 +3,7 @@ autoload -U colors && colors
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export EDITOR='nvim'
-export BROWSER="/usr/local/Caskroom/brave-browser/90.1.23.71,123.71/Brave\ Browser.app/Contents/MacOS/Brave\ Browser"
+export BROWSER="/usr/local/Caskroom/brave-browser/90.1.23.71,123.71/Brave\\ Browser.app/Contents/MacOS/Brave\\ Browser"
 export BAT_THEME="zenburn"
 export FZF_DEFAULT_OPTS="
 --info=inline

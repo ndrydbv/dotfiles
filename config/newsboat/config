@@ -5,14 +5,11 @@ feedlist-title-format "%?F?Feeds&Your feeds? (%u unread, %t total)%?F? matching 
 itemview-title-format "%T (%u/%t)"
 notify-format       "%d new articles (%n unread articles, %f unread feeds)"
 podlist-format      "%4i [%-5p %%] %-12S %F"
-prepopulate-query-feeds yes
-refresh-on-startup yes
-suppress-first-reload yes
-scrolloff 10
-auto-reload yes
 max-items 1000
-reload-threads 100
+reload-threads 10
 text-width 80
+scrolloff 10
+cleanup-on-quit yes
 browser "/usr/local/Caskroom/brave-browser/90.1.23.71,123.71/Brave\\ Browser.app/Contents/MacOS/Brave\\ Browser"
 
 bind-key , macro-prefix
@@ -32,8 +29,10 @@ bind-key N prev-unread
 bind-key t set-tag
 bind-key T clear-tag
 bind-key U show-urls
+bind-key f sort
+bind-key F rev-sort
 bind-key о down
-bind-key ж macro-prefix
+bind-key б macro-prefix
 bind-key р quit
 bind-key П end
 bind-key п home
@@ -50,8 +49,10 @@ bind-key Г show-urls
 bind-key е set-tag
 bind-key Е clear-tag
 bind-key Й hard-quit
+bind-key а sort
+bind-key А rev-sort
 bind-key RIGHT next-unread
-bind-key LEFT quit
+bind-key LEFT prev-unread
 
 color background default default
 color listnormal default default
@@ -72,3 +73,5 @@ highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
 
 macro , set browser "rtv -l %u"; open-in-browser; set browser "/usr/local/Caskroom/brave-browser/90.1.23.71,123.71/Brave\\ Browser.app/Contents/MacOS/Brave\\ Browser"
+
+macro б set browser "rtv -l %u"; open-in-browser; set browser "/usr/local/Caskroom/brave-browser/90.1.23.71,123.71/Brave\\ Browser.app/Contents/MacOS/Brave\\ Browser"
