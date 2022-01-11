@@ -41,6 +41,14 @@ man() {
     command man "$@"
 }
 
+function invim() {
+    local fname
+    local current_dir=$PWD
+    fname=$(fzf) || return
+    nvim "$fname"
+    cd $current_dir
+}
+
 # Basic auto/tab complete:
 autoload -U compinit
 compinit
@@ -56,6 +64,9 @@ bindkey '^j' down-history
 bindkey '^k' history-substring-search-up
 bindkey '^j' history-substring-search-down
 bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey -s '^o' 'invim^M'
 
 autoload -z edit-command-line
 zle -N edit-command-line
