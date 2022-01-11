@@ -48,6 +48,15 @@ function invim() {
     nvim "$fname"
     cd $current_dir
 }
+bindkey -s '^o' 'invim^M'
+
+# alt-x: insert last command result
+zmodload -i zsh/parameter
+insert-last-command-output() {
+  LBUFFER+="$(eval $history[$((HISTCMD-1))])"
+}
+zle -N insert-last-command-output
+bindkey '^x' insert-last-command-output
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -66,7 +75,8 @@ bindkey '^j' history-substring-search-down
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
-bindkey -s '^o' 'invim^M'
+bindkey '^b' backward-word
+bindkey '^f' forward-word
 
 autoload -z edit-command-line
 zle -N edit-command-line
