@@ -3,7 +3,7 @@ autoload -U colors && colors
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export EDITOR='nvim'
-export BROWSER="/usr/local/Caskroom/brave-browser/90.1.23.71,123.71/Brave\\ Browser.app/Contents/MacOS/Brave\\ Browser"
+export BROWSER="/usr/local/Caskroom/brave-browser/1.34.80.0,134.80/Brave\ Browser.app/Contents/MacOS/Brave\ Browser"
 export BAT_THEME="zenburn"
 export FZF_DEFAULT_OPTS="
 --info=inline
@@ -25,6 +25,8 @@ setopt append_history           # append to histfile instead of overwriting
 setopt hist_expire_dups_first   # prune duplicate commands before unique from history
 setopt hist_ignore_space        # remove commands with starting whitespace from history
 setopt share_history            # append and import history between terminals
+
+setopt complete_in_word
 
 # vi mode
 bindkey -v
@@ -64,6 +66,7 @@ compinit
 zstyle ':completion:*' menu select
 # Auto complete with case insenstivity
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
 zmodload zsh/complist
 _comp_options+=(globdots)		# Include hidden files.
 bindkey '^n' expand-or-complete
