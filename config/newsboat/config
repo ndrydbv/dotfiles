@@ -52,6 +52,7 @@ bind-key Й hard-quit
 bind-key а sort
 bind-key А rev-sort
 bind-key щ open-in-browser
+bind-key Щ open-in-browser-and-mark-read
 bind-key RIGHT next-unread
 bind-key LEFT prev-unread
 
