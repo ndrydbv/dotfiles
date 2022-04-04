@@ -204,7 +204,8 @@ let g:coc_global_extensions = [
   \ 'coc-phpls',
   \ 'coc-vimtex',
   \ 'coc-emmet',
-  \ 'coc-ccls'
+  \ 'coc-ccls',
+  \ 'coc-sh'
   \]
 
 " From Coc Readme
@@ -318,6 +319,7 @@ autocmd ColorScheme *
 
 " Set floating window to be transparent
 set winbl=0
+" set cursorline
 " ===                      CUSTOM COLORSCHEME CHANGES                      === "
 
 function! s:custom_colors()
