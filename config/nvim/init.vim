@@ -37,6 +37,8 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'tpope/vim-dadbod'
+Plug 'sheerun/vim-polyglot'
+Plug 'ianding1/leetcode.vim'
 
 call plug#end()
 
@@ -320,7 +322,15 @@ autocmd ColorScheme *
 " Set floating window to be transparent
 set winbl=0
 " set cursorline
-" ===                      CUSTOM COLORSCHEME CHANGES                      === "
+
+nnoremap <leader>ll :LeetCodeList<cr>
+nnoremap <leader>lt :LeetCodeTest<cr>
+nnoremap <leader>ls :LeetCodeSubmit<cr>
+nnoremap <leader>li :LeetCodeSignIn<cr>
+let g:leetcode_browser='brave'
+let g:leetcode_solution_filetype='python'
+"
+""" ===                      CUSTOM COLORSCHEME CHANGES                      === "
 
 function! s:custom_colors()
 " Make background transparent for many things
@@ -345,11 +355,11 @@ function! s:custom_colors()
   hi SignifySignChange guifg=#c594c5
 endfunction
 
-autocmd! ColorScheme OceanicNext call s:custom_colors()
+autocmd! ColorScheme monokai call s:custom_colors()
 
 " Editor theme
 try
-  colorscheme OceanicNext
+  colorscheme monokai
 catch
   colorscheme slate
 endtry
