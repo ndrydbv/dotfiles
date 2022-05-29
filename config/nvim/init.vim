@@ -42,7 +42,6 @@ Plug 'ianding1/leetcode.vim'
 
 call plug#end()
 
-" ===                               SETTINGS                               === "
 set synmaxcol=200
 set foldmethod=indent
 set nofoldenable
@@ -329,7 +328,7 @@ nnoremap <leader>ls :LeetCodeSubmit<cr>
 nnoremap <leader>li :LeetCodeSignIn<cr>
 let g:leetcode_browser='brave'
 let g:leetcode_solution_filetype='python'
-"
+
 """ ===                      CUSTOM COLORSCHEME CHANGES                      === "
 
 function! s:custom_colors()
