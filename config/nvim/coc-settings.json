@@ -1,26 +1,21 @@
 {
+  "javascript.preferences.quoteStyle": "single",
+  "prettier.singleQuote": true,
   "prettier.formatterPriority": 1,
+  "prettier.printWidth": 160,
+  "prettier.semi": false,
   "coc.preferences.formatOnSaveFiletypes": ["*"],
-  "eslint.probe": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "html",
-    "vue",
-    "markdown"
-  ],
-  "eslint.options": {
-    "ignorePath": ".gitignore"
-  },
-  "eslint.lintTask.options": ["--ignore-path", ".gitignore", "."],
-  "eslint.validate": ["svelte"],
+  // "eslint.rules.customizations": [{ "quotes": "off" }],
+  // "eslint.format.enable": true,
+  // "eslint.probe": ["javascript", "javascriptreact", "typescript", "typescriptreact", "html", "vue", "markdown"],
+  // "eslint.lintTask.options": ["--ignore-path", ".gitignore", "."],
+  // "eslint.validate": ["svelte"],
+  // "eslint.autoFixOnSave": true,
   "snippets.extends": {
     "svelte": ["javascript", "typescript"]
   },
   "python.jediEnabled": true,
   "python.globalModuleInstallation": true,
-  "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "⚠",

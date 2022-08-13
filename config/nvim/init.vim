@@ -39,6 +39,7 @@ Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'tpope/vim-dadbod'
 Plug 'sheerun/vim-polyglot'
 Plug 'ianding1/leetcode.vim'
+Plug 'diepm/vim-rest-console'
 
 call plug#end()
 
@@ -64,6 +65,7 @@ nmap <leader>hi :History<cr>
 nmap <leader>hc :History:<cr>
 nmap <leader>co :Commands<cr>
 nmap <leader>bd :bd!<cr>
+nmap <leader>bc :bp\|bd #<cr>
 nmap <leader>bn :e<Space>
 nmap <leader>ev :e! ~/.config/nvim/init.vim<cr>
 nmap  <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
@@ -225,29 +227,31 @@ set shortmess+=c
 set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Navigate snippet placeholders using tab
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-k>'
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <c-j> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -328,6 +332,14 @@ nnoremap <leader>ls :LeetCodeSubmit<cr>
 nnoremap <leader>li :LeetCodeSignIn<cr>
 let g:leetcode_browser='brave'
 let g:leetcode_solution_filetype='python'
+
+let g:vrc_curl_opts = {
+  \ '-sS': '',
+  \ '--connect-timeout': 10,
+  \ '-i': '',
+  \ '--max-time': 60,
+  \ '-k': '',
+\}
 
 """ ===                      CUSTOM COLORSCHEME CHANGES                      === "
 

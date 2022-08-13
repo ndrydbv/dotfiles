@@ -10,7 +10,6 @@ setopt share_history            # append and import history between terminals
 
 setopt complete_in_word
 
-# vi mode
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -25,6 +24,34 @@ man() {
     command man "$@"
 }
 
+autoload -U compinit && compinit -u
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)
+
+bindkey '^i' autosuggest-accept
+bindkey '^p' up-history
+bindkey '^n' down-history
+bindkey '^p' history-substring-search-up
+bindkey '^n' history-substring-search-down
+bindkey '^r' history-incremental-pattern-search-backward
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey '^b' backward-word
+bindkey '^f' forward-word
+bindkey '^j' menu-complete
+bindkey '^k' reverse-menu-complete
+bindkey -M menuselect '^j' vi-down-line-or-history
+bindkey -M menuselect '^k' vi-up-line-or-history
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+function take() {    mkdir -p $@ && cd ${@:$#}  }
+
 function invim() {
     local fname
     local current_dir=$PWD
@@ -34,42 +61,13 @@ function invim() {
 }
 bindkey -s '^v' 'invim^M'
 
-# alt-x: insert last command result
+# ctrl-x: insert last command result
 zmodload -i zsh/parameter
 insert-last-command-output() {
   LBUFFER+="$(eval $history[$((HISTCMD-1))])"
 }
 zle -N insert-last-command-output
 bindkey '^x' insert-last-command-output
-
-# Basic auto/tab complete:
-autoload -U compinit
-compinit
-zstyle ':completion:*' menu select
-# Auto complete with case insenstivity
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-
-zmodload zsh/complist
-_comp_options+=(globdots)		# Include hidden files.
-bindkey '^n' expand-or-complete
-bindkey '^p' reverse-menu-complete
-bindkey '^k' up-history
-bindkey '^j' down-history
-bindkey '^k' history-substring-search-up
-bindkey '^j' history-substring-search-down
-bindkey '^R' history-incremental-pattern-search-backward
-bindkey '^a' beginning-of-line
-bindkey '^e' end-of-line
-bindkey '^b' backward-word
-bindkey '^f' forward-word
-
-autoload -z edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-
-# shortcut for mkdirr && cd
-function take() {    mkdir -p $@ && cd ${@:$#}  }
 
 bindkey -s '^o' 'lf^M'
 
