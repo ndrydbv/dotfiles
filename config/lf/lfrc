@@ -81,7 +81,6 @@ map <c-r> reload
 map <c-v> $nvim $(fzf)
 map <enter> shell
 map <space> :toggle;down;
-map o open
 map ch chmod
 map U unselect
 map Y $printf "%s" "$fx" | pbcopy

@@ -32,11 +32,11 @@ compinit
 _comp_options+=(globdots)
 
 bindkey '^i' autosuggest-accept
+bindkey '[[Z' autosuggest-accept
 bindkey '^p' up-history
 bindkey '^n' down-history
 bindkey '^p' history-substring-search-up
 bindkey '^n' history-substring-search-down
-bindkey '^r' history-incremental-pattern-search-backward
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^b' backward-word
